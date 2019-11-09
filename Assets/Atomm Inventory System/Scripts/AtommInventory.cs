@@ -82,7 +82,6 @@ public class AtommInventory : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        Debug.Log("col");
         if (collision.gameObject.tag == "Doc")
             if (Input.GetKeyDown(interaction) && !inv.activeSelf)
                 GatherDoc(collision.collider.GetComponent<AtommDocument>());
@@ -95,7 +94,17 @@ public class AtommInventory : MonoBehaviour
             GatherItem(collision.collider.GetComponent<AtommItem>());
     }
 
-    public void ContainerActive (AtommContainer atommC)
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("RecolectableObject"))
+        {
+            Debug.Log(other.GetComponent<AtommItem>());
+            GatherItem(other.GetComponent<AtommItem>());
+            other.gameObject.SetActive(false);
+        }
+    }
+
+        public void ContainerActive (AtommContainer atommC)
     {
         ActionInventory();
 

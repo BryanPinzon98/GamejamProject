@@ -28,8 +28,6 @@ public class Character_Controller : MonoBehaviour {
             recolectableObject2.Play ();
         } else if (other.gameObject.CompareTag ("Light3")) {
             recolectableObject3.Play ();
-        } else if (other.gameObject.CompareTag ("RecolectableObject")){
-            other.gameObject.SetActive(false);
         }
     }
 }
