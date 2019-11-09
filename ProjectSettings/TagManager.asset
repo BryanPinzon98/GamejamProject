@@ -6,7 +6,10 @@ TagManager:
   tags:
   - Fire
   - Doc
-  - RecolectableObjects
+  - Light1
+  - Light2
+  - Light3
+  - RecolectableObject
   layers:
   - Default
   - TransparentFX
