@@ -25,6 +25,10 @@ public class MenuPrincipal : MonoBehaviour
     }
 
     public void salir(){
-        Console.WriteLine("Salir");
+        Application.Quit();
+    }
+
+    public void controles(){
+        SceneManager.LoadScene("InstructionsScene");
     }
 }
