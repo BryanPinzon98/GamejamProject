@@ -80,12 +80,19 @@ public class AtommInventory : MonoBehaviour
         }
     }
 
-    void OnCollisionStay(Collision collisionInfo)
+    void OnCollisionStay(Collision collision)
     {
-        if (collisionInfo.gameObject.tag == "Doc")
+        Debug.Log("col");
+        if (collision.gameObject.tag == "Doc")
             if (Input.GetKeyDown(interaction) && !inv.activeSelf)
-                GatherDoc(collisionInfo.collider.GetComponent<AtommDocument>());
+                GatherDoc(collision.collider.GetComponent<AtommDocument>());
 
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Obj")
+            GatherItem(collision.collider.GetComponent<AtommItem>());
     }
 
     public void ContainerActive (AtommContainer atommC)
