@@ -20,8 +20,7 @@ public class MenuPrincipal : MonoBehaviour
 
     public void jugar(){
         Console.WriteLine("Jugar");
-        SceneManager.LoadScene("StartScene");
-
+        SceneManager.LoadScene("GameScene");
     }
 
     public void salir(){
