@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class opMat : MonoBehaviour
 {
 
@@ -42,8 +43,7 @@ public class opMat : MonoBehaviour
             Destroy(menos);
             sin1.text = "Bien ";
             sin2.text = "Hecho ";
-
-
+            SceneManager.UnloadSceneAsync("MiniGame1");
         }
         else
         {

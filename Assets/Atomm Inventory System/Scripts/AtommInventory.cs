@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AtommInventory : MonoBehaviour {
     public KeyCode action, interaction;
@@ -107,6 +108,7 @@ public class AtommInventory : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("RecolectableObject1") || other.gameObject.CompareTag("RecolectableObject2") || other.gameObject.CompareTag("RecolectableObject3"))
         {
+            SceneManager.LoadScene("MiniGame1", LoadSceneMode.Additive);
             Debug.Log(other.GetComponent<AtommItem>());
             GatherItem(other.GetComponent<AtommItem>());
             other.gameObject.SetActive(false);
