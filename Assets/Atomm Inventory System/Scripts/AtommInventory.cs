@@ -16,10 +16,16 @@ public class AtommInventory : MonoBehaviour {
     PlayerLook pl;
     CanvasScaler cs;
 
+    private AudioSource audioSource;
+    public AudioClip firstObjectPickSound;
+    public AudioClip secondObjectPickSound;
+    public AudioClip thirdObjectPickSound;
+
     public GameObject UIBookText;
     private Text bookText;
 
     private void Start () {
+        audioSource = GetComponent<AudioSource>();
         inventory = new List<Slot> ();
         docs = new List<Document> ();
         canvas = GameObject.Find ("Canvas").transform;
@@ -100,19 +106,35 @@ public class AtommInventory : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Obj")
-            GatherItem(collision.collider.GetComponent<AtommItem>());
+        if (collision.gameObject.tag == "Obj"){
+            GatherItem(collision.collider.GetComponent<AtommItem>());}
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("RecolectableObject1") || other.gameObject.CompareTag("RecolectableObject2") || other.gameObject.CompareTag("RecolectableObject3"))
-        {
-            SceneManager.LoadScene("MiniGame1", LoadSceneMode.Additive);
-            Debug.Log(other.GetComponent<AtommItem>());
-            GatherItem(other.GetComponent<AtommItem>());
-            other.gameObject.SetActive(false);
+        if(other.gameObject.CompareTag("RecolectableObject1")){
+            audioSource.PlayOneShot(firstObjectPickSound, 5.0f);
+            Debug.Log("Object1");
+            loadMiniGame(other);
         }
+        else if(other.gameObject.CompareTag("RecolectableObject2")){
+            audioSource.PlayOneShot(secondObjectPickSound, 5.0f);
+            Debug.Log("Object3");
+            loadMiniGame(other);
+        }
+        else if(other.gameObject.CompareTag("RecolectableObject3")){
+            audioSource.PlayOneShot(thirdObjectPickSound, 5.0f);
+            Debug.Log("Object3");
+            loadMiniGame(other);
+        }
+
+    }
+
+    void loadMiniGame(Collider other){
+        SceneManager.LoadScene("MiniGame1", LoadSceneMode.Additive);
+        Debug.Log(other.GetComponent<AtommItem>());
+        GatherItem(other.GetComponent<AtommItem>());
+        other.gameObject.SetActive(false);
     }
 
         public void ContainerActive (AtommContainer atommC)
