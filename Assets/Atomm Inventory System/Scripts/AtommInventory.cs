@@ -139,8 +139,9 @@ public class AtommInventory : MonoBehaviour {
             audioSource.PlayOneShot(thirdObjectPickSound, 5.0f);
             loadMiniGame(other, "MiniGame3");
         } else if (other.gameObject.CompareTag("FinalCollision")) {
-            if (inventory.Count == 3)
+            if (true)
             {
+
                 audioSource.PlayOneShot(finalStageSound);
                 //Ejecutar el sonido de las voces.
                 StartCoroutine(FinalScene());

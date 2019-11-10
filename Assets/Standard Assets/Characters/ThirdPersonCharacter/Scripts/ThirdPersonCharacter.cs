@@ -28,6 +28,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
+        public AudioClip pasos;
+        private AudioSource audioSource;
+        private bool isPlaying = false;
 
 
 		void Start()
@@ -40,6 +43,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
+            audioSource = GetComponent<AudioSource>();
 		}
 
 
@@ -71,6 +75,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			ScaleCapsuleForCrouching(crouch);
 			PreventStandingInLowHeadroom();
 
+            
+                
 			// send input and other state parameters to the animator
 			UpdateAnimator(move);
 		}
@@ -144,9 +150,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (m_IsGrounded && move.magnitude > 0)
 			{
 				m_Animator.speed = m_AnimSpeedMultiplier;
-			}
+                if (!isPlaying)
+                {
+                    isPlaying = true;
+                    audioSource.Play();
+                }
+            }
 			else
 			{
+                audioSource.Stop();
+                isPlaying = false;
 				// don't use that while airborne
 				m_Animator.speed = 1;
 			}

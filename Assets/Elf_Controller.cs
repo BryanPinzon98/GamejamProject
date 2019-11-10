@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Elf_Controller : MonoBehaviour {
 
@@ -38,7 +39,14 @@ public class Elf_Controller : MonoBehaviour {
         if (other.gameObject.CompareTag ("FinalGameCollider")) {
             finalGameText.text = "Nunca llegué a imaginar que el fin del mundo lo causarían seres fuera de este planeta";
             audioSource.PlayOneShot (impactSound, 0.5f);
+            StartCoroutine(loadCredits());
         }
+    }
+
+    public IEnumerator loadCredits()
+    {
+        yield return new WaitForSecondsRealtime(8f);
+        SceneManager.LoadScene("instructions");
     }
 
     public void showPowerTextFeedback () {
