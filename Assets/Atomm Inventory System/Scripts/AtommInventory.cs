@@ -111,13 +111,15 @@ public class AtommInventory : MonoBehaviour {
             GatherItem (collision.collider.GetComponent<AtommItem> ());
     }
 
-    
 
-    private IEnumerator FinalScene () {
-        yield return new WaitForSecondsRealtime (3.0f);
-        finalParticleSystem.Play ();
-        yield return new WaitForSecondsRealtime (2.0f);
-        SceneManager.LoadScene ("Scene2");
+
+    private IEnumerator FinalScene()
+    {
+        yield return new WaitForSecondsRealtime(3.0f);
+        finalParticleSystem.Play();
+        yield return new WaitForSecondsRealtime(2.0f);
+        SceneManager.LoadScene("Scene2");
+    }
 
     void OnTriggerEnter(Collider other)
     {
