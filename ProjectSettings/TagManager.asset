@@ -9,7 +9,9 @@ TagManager:
   - Light1
   - Light2
   - Light3
-  - RecolectableObject
+  - RecolectableObject1
+  - RecolectableObject2
+  - RecolectableObject3
   layers:
   - Default
   - TransparentFX
