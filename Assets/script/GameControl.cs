@@ -11,10 +11,14 @@ public class GameControl : MonoBehaviour
 
     [SerializeField]
     public static bool youWin;
+
+    private AudioSource audioSource;
+    public AudioClip successSound;
     
     // Start is called before the first frame update
     void Start()
     {  
+        audioSource = GetComponent<AudioSource>();
         youWin = false;
     }
 
@@ -34,8 +38,14 @@ public class GameControl : MonoBehaviour
             ) {
             youWin = true;
             win.text = "Ganaste!";
-            SceneManager.UnloadSceneAsync("MiniGame3");
+            audioSource.PlayOneShot(successSound);
+            StartCoroutine(waitForGame()); 
 
         }
+    }
+
+    public IEnumerator waitForGame(){
+        yield return new WaitForSecondsRealtime(1.0f);
+        SceneManager.UnloadSceneAsync("MiniGame3");
     }
 }
