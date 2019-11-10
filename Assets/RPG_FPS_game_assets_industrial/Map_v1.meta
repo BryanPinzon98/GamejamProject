@@ -1,8 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: bda7f8af31fa331429693e734710b5c4
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
+=======
+guid: 94fdc5985e0a94447b36138bdb5bf898
+folderAsset: yes
+timeCreated: 1490536108
+licenseType: Store
+DefaultImporter:
+>>>>>>> Laura
   userData: 
   assetBundleName: 
   assetBundleVariant: 
