@@ -2199,7 +2199,7 @@ MonoBehaviour:
   canvas: {fileID: 1718453489}
   "sensacionExtra\xF1a": {fileID: 403712801}
   finalGameText: {fileID: 676308511}
-  powerSound: {fileID: 8300000, guid: 84e5de4a98b391b4da76f6ae592d1dc2, type: 3}
+  powerSound: {fileID: 8300000, guid: 4c3906567f05a424c9bd2669d41b09bf, type: 3}
   impactSound: {fileID: 8300000, guid: ef8450165a2139d408f99377f8167c56, type: 3}
 --- !u!82 &1708186337
 AudioSource:
