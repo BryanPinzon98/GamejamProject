@@ -16,11 +16,17 @@ public class AtommInventory : MonoBehaviour {
     PlayerLook pl;
     CanvasScaler cs;
 
+    private AudioSource audioSource;
+    public AudioClip firstObjectPickSound;
+    public AudioClip secondObjectPickSound;
+    public AudioClip thirdObjectPickSound;
+
     public GameObject UIBookText;
     private Text bookText;
     public ParticleSystem finalParticleSystem;
 
     private void Start () {
+        audioSource = GetComponent<AudioSource>();
         inventory = new List<Slot> ();
         docs = new List<Document> ();
         canvas = GameObject.Find ("Canvas").transform;
@@ -105,25 +111,44 @@ public class AtommInventory : MonoBehaviour {
             GatherItem (collision.collider.GetComponent<AtommItem> ());
     }
 
-    void OnTriggerEnter (Collider other) {
-        if (other.gameObject.CompareTag ("RecolectableObject1") || other.gameObject.CompareTag ("RecolectableObject2") || other.gameObject.CompareTag ("RecolectableObject3")) {
-            SceneManager.LoadScene ("MiniGame1", LoadSceneMode.Additive);
-            Debug.Log (other.GetComponent<AtommItem> ());
-            GatherItem (other.GetComponent<AtommItem> ());
-            other.gameObject.SetActive (false);
-        } else if (other.gameObject.CompareTag ("FinalCollision")) {
-            if (inventory.Count == 3) {
-                //Ejecutar el sonido de las voces.
-                StartCoroutine (FinalScene ());
-            }
-        }
+
+
+    private IEnumerator FinalScene()
+    {
+        yield return new WaitForSecondsRealtime(3.0f);
+        finalParticleSystem.Play();
+        yield return new WaitForSecondsRealtime(2.0f);
+        SceneManager.LoadScene("Scene2");
     }
 
-    private IEnumerator FinalScene () {
-        yield return new WaitForSecondsRealtime (3.0f);
-        finalParticleSystem.Play ();
-        yield return new WaitForSecondsRealtime (2.0f);
-        SceneManager.LoadScene ("Scene2");
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("RecolectableObject1")){
+            audioSource.PlayOneShot(firstObjectPickSound, 5.0f);
+            loadMiniGame(other, "MiniGame1");
+        }
+        else if(other.gameObject.CompareTag("RecolectableObject2")){
+            audioSource.PlayOneShot(secondObjectPickSound, 5.0f);
+            loadMiniGame(other, "MiniGame2");
+        }
+        else if(other.gameObject.CompareTag("RecolectableObject3")){
+            audioSource.PlayOneShot(thirdObjectPickSound, 5.0f);
+            loadMiniGame(other, "MiniGame3");
+        } else if (other.gameObject.CompareTag("FinalCollision")) {
+            if (inventory.Count == 3)
+            {
+                //Ejecutar el sonido de las voces.
+                StartCoroutine(FinalScene());
+            }
+        }
+
+    }
+
+    void loadMiniGame(Collider other, string scene){
+        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+        Debug.Log(other.GetComponent<AtommItem>());
+        GatherItem(other.GetComponent<AtommItem>());
+        other.gameObject.SetActive(false);
     }
 
     public void ContainerActive (AtommContainer atommC) {
