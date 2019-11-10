@@ -107,7 +107,7 @@ public class AtommInventory : MonoBehaviour {
 
     void OnTriggerEnter (Collider other) {
         if (other.gameObject.CompareTag ("RecolectableObject1") || other.gameObject.CompareTag ("RecolectableObject2") || other.gameObject.CompareTag ("RecolectableObject3")) {
-            SceneManager.LoadScene ("MiniGame1", LoadSceneMode.Additive);
+            SceneManager.LoadScene ("MiniGame2", LoadSceneMode.Additive);
             Debug.Log (other.GetComponent<AtommItem> ());
             GatherItem (other.GetComponent<AtommItem> ());
             other.gameObject.SetActive (false);

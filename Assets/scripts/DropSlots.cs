@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.SceneManagement;
 public class DropSlots : EventTrigger, IDropHandler
 {
     public int id;
@@ -21,7 +21,8 @@ public class DropSlots : EventTrigger, IDropHandler
         if (item.gameObject.tag == this.gameObject.tag)
             item.transform.SetParent(transform);// lo toma en    donde  pueda y reposiciona.
             item.transform.position = this.transform.position;
-
+            if(this.gameObject.tag == "bobina")
+                SceneManager.UnloadSceneAsync("MiniGame2");
 
 
     }
