@@ -10,9 +10,15 @@ public class opMat : MonoBehaviour
     public Text sin1, sin2, signo;
     public InputField res;
     public GameObject menos;
+    private AudioSource audioSource;
+    public AudioClip correctOptionSound;
+    public AudioClip errorOptionSound;
+    //private bool isPlayed;
     // Start is called before the first frame update
     void Start()
     {
+
+        audioSource = GetComponent<AudioSource>();
         int si1=0;
         int si2 = 0;
         si1 =UnityEngine.Random.Range(1, 100);
@@ -43,16 +49,23 @@ public class opMat : MonoBehaviour
             Destroy(menos);
             sin1.text = "Bien ";
             sin2.text = "Hecho ";
-            SceneManager.UnloadSceneAsync("MiniGame1");
+            audioSource.PlayOneShot(correctOptionSound);
+            StartCoroutine(waitForGame());        
         }
         else
         {
             sin1.text = "Mal ";
             sin2.text = "Hecho ";
-            
+            audioSource.PlayOneShot(errorOptionSound);
             Start();
         }
     }
+
+    public IEnumerator waitForGame(){
+        yield return new WaitForSecondsRealtime(1.0f);
+        SceneManager.UnloadSceneAsync("MiniGame1");
+    }
+
     void DestroyGameObject()
     {
         Destroy(gameObject);
