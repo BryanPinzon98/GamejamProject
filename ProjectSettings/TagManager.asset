@@ -13,6 +13,12 @@ TagManager:
   - RecolectableObject1
   - Light2
   - FinalCollision
+  - DragParent
+  - radio
+  - peligro
+  - bobina
+  - tanque
+  - herramienta
   layers:
   - Default
   - TransparentFX
