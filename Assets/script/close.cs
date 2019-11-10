@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class close : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class close : MonoBehaviour
     }
     public void OnMouseDown() {
 
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
 
     }
 

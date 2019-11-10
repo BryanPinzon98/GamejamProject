@@ -28,6 +28,10 @@ public class MenuPrincipal : MonoBehaviour
     }
 
     public void controles(){
-        SceneManager.LoadScene("InstructionsScene");
+        SceneManager.LoadScene("controles");
+    }
+
+    public void creditos() {
+        SceneManager.LoadScene("instructions");
     }
 }
