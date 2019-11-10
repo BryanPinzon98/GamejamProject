@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameControl : MonoBehaviour
 {
     public Text win;
@@ -34,6 +34,7 @@ public class GameControl : MonoBehaviour
             ) {
             youWin = true;
             win.text = "Ganaste!";
+            SceneManager.UnloadSceneAsync("MiniGame3");
 
         }
     }

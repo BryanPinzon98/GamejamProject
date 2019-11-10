@@ -106,15 +106,32 @@ public class AtommInventory : MonoBehaviour {
     }
 
     void OnTriggerEnter (Collider other) {
-        if (other.gameObject.CompareTag ("RecolectableObject1") || other.gameObject.CompareTag ("RecolectableObject2") || other.gameObject.CompareTag ("RecolectableObject3")) {
-            SceneManager.LoadScene ("MiniGame2", LoadSceneMode.Additive);
-            Debug.Log (other.GetComponent<AtommItem> ());
-            GatherItem (other.GetComponent<AtommItem> ());
-            other.gameObject.SetActive (false);
-        } else if (other.gameObject.CompareTag ("FinalCollision")) {
-            if (inventory.Count == 3) {
+        if (other.gameObject.CompareTag("RecolectableObject1"))
+        {
+            SceneManager.LoadScene("MiniGame2", LoadSceneMode.Additive);
+            Debug.Log(other.GetComponent<AtommItem>());
+            GatherItem(other.GetComponent<AtommItem>());
+            other.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("RecolectableObject2"))
+        {
+            SceneManager.LoadScene("MiniGame3", LoadSceneMode.Additive);
+            Debug.Log(other.GetComponent<AtommItem>());
+            GatherItem(other.GetComponent<AtommItem>());
+            other.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("RecolectableObject3")) {
+            SceneManager.LoadScene("MiniGame1", LoadSceneMode.Additive);
+            Debug.Log(other.GetComponent<AtommItem>());
+            GatherItem(other.GetComponent<AtommItem>());
+            other.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("FinalCollision"))
+        {
+            if (inventory.Count == 3)
+            {
                 //Ejecutar el sonido de las voces.
-                StartCoroutine (FinalScene ());
+                StartCoroutine(FinalScene());
             }
         }
     }
