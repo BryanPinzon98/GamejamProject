@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AtommInventory : MonoBehaviour {
     public KeyCode action, interaction;
@@ -18,6 +18,7 @@ public class AtommInventory : MonoBehaviour {
 
     public GameObject UIBookText;
     private Text bookText;
+    public ParticleSystem finalParticleSystem;
 
     private void Start () {
         inventory = new List<Slot> ();
@@ -40,6 +41,7 @@ public class AtommInventory : MonoBehaviour {
         cs.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
         cs.matchWidthOrHeight = 0.5f;
 
+        finalParticleSystem.Stop ();
         bookText = UIBookText.GetComponentInChildren<Text> ();
         bookText.text = "";
 
@@ -98,26 +100,34 @@ public class AtommInventory : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
+    void OnCollisionEnter (Collision collision) {
         if (collision.gameObject.tag == "Obj")
-            GatherItem(collision.collider.GetComponent<AtommItem>());
+            GatherItem (collision.collider.GetComponent<AtommItem> ());
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("RecolectableObject1") || other.gameObject.CompareTag("RecolectableObject2") || other.gameObject.CompareTag("RecolectableObject3"))
-        {
-            SceneManager.LoadScene("MiniGame1", LoadSceneMode.Additive);
-            Debug.Log(other.GetComponent<AtommItem>());
-            GatherItem(other.GetComponent<AtommItem>());
-            other.gameObject.SetActive(false);
+    void OnTriggerEnter (Collider other) {
+        if (other.gameObject.CompareTag ("RecolectableObject1") || other.gameObject.CompareTag ("RecolectableObject2") || other.gameObject.CompareTag ("RecolectableObject3")) {
+            SceneManager.LoadScene ("MiniGame1", LoadSceneMode.Additive);
+            Debug.Log (other.GetComponent<AtommItem> ());
+            GatherItem (other.GetComponent<AtommItem> ());
+            other.gameObject.SetActive (false);
+        } else if (other.gameObject.CompareTag ("FinalCollision")) {
+            if (inventory.Count == 3) {
+                //Ejecutar el sonido de las voces.
+                StartCoroutine (FinalScene ());
+            }
         }
     }
 
-        public void ContainerActive (AtommContainer atommC)
-    {
-        ActionInventory();
+    private IEnumerator FinalScene () {
+        yield return new WaitForSecondsRealtime (3.0f);
+        finalParticleSystem.Play ();
+        yield return new WaitForSecondsRealtime (2.0f);
+        SceneManager.LoadScene ("Scene2");
+    }
+
+    public void ContainerActive (AtommContainer atommC) {
+        ActionInventory ();
 
         GameObject cont = Instantiate (container, canvas);
         canvasContainer = cont.transform;

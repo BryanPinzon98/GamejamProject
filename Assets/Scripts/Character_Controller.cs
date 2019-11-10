@@ -31,12 +31,15 @@ public class Character_Controller : MonoBehaviour {
         } else if (other.gameObject.CompareTag ("RecolectableObject1")){
             other.gameObject.SetActive(false);
             recolectableObject1.Stop ();
+            Destroy(recolectableObject1);
         } else if (other.gameObject.CompareTag ("RecolectableObject2")){
             other.gameObject.SetActive(false);
             recolectableObject2.Stop ();
+            Destroy(recolectableObject2);
         } else if (other.gameObject.CompareTag ("RecolectableObject3")){
             other.gameObject.SetActive(false);
             recolectableObject3.Stop ();
+            Destroy(recolectableObject3);
         }
     }
 }
