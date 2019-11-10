@@ -150,16 +150,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (m_IsGrounded && move.magnitude > 0)
 			{
 				m_Animator.speed = m_AnimSpeedMultiplier;
-                if (!isPlaying)
-                {
-                    isPlaying = true;
-                    audioSource.Play();
-                }
             }
 			else
 			{
-                audioSource.Stop();
-                isPlaying = false;
 				// don't use that while airborne
 				m_Animator.speed = 1;
 			}
