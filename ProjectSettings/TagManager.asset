@@ -19,6 +19,7 @@ TagManager:
   - bobina
   - tanque
   - herramienta
+  - FinalGameCollider
   layers:
   - Default
   - TransparentFX
