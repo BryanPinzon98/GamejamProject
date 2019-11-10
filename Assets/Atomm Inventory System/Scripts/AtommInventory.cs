@@ -25,6 +25,10 @@ public class AtommInventory : MonoBehaviour {
     private Text bookText;
     public ParticleSystem finalParticleSystem;
 
+
+    public AudioClip finalStageSound;
+    public AudioClip errorRadioSound;
+
     private void Start () {
         audioSource = GetComponent<AudioSource>();
         inventory = new List<Slot> ();
@@ -115,9 +119,9 @@ public class AtommInventory : MonoBehaviour {
 
     private IEnumerator FinalScene()
     {
-        yield return new WaitForSecondsRealtime(3.0f);
+        yield return new WaitForSecondsRealtime(23.0f);
         finalParticleSystem.Play();
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSecondsRealtime(11.0f);
         SceneManager.LoadScene("Scene2");
     }
 
@@ -137,8 +141,13 @@ public class AtommInventory : MonoBehaviour {
         } else if (other.gameObject.CompareTag("FinalCollision")) {
             if (inventory.Count == 3)
             {
+                audioSource.PlayOneShot(finalStageSound);
                 //Ejecutar el sonido de las voces.
                 StartCoroutine(FinalScene());
+            }
+
+            else if(inventory.Count < 3){
+                audioSource.PlayOneShot(errorRadioSound);
             }
         }
 
