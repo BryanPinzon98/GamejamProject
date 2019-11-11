@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 18617d45d8a044b45b18d1fa0c513160
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - open: {instanceID: 0}
+  - close: {instanceID: 0}
+  - itemPickUp: {instanceID: 0}
+  - documentPickUp: {instanceID: 0}
+  - UIBookText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

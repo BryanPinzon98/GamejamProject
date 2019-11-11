@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fire
+  - RecolectableObject2
+  - Doc
+  - RecolectableObject3
+  - Light3
+  - Light1
+  - RecolectableObject1
+  - Light2
+  - FinalCollision
+  - DragParent
+  - radio
+  - peligro
+  - bobina
+  - tanque
+  - herramienta
+  - FinalGameCollider
   layers:
   - Default
   - TransparentFX
@@ -13,7 +29,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - Walls
   - 
   - 
   - 
